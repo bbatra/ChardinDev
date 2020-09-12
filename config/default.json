@@ -1,0 +1,23 @@
+{
+  "PORT" : 8080,
+  "client-dist" :"./static/dist",
+  "watchPaths": {
+    "js" : [
+      "./static/**/*.js",
+      "./server/**/*.js",
+      "*.js"
+    ],
+    "css": [
+      "./static/**/*.css"
+    ],
+    "html": [
+      "./server/**/*.hbs"
+    ],
+    "images": [
+      "./static/images/**/*"
+    ],
+    "json": [
+      "./server/**/*.json"
+    ]
+  }
+}

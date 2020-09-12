@@ -1,0 +1,8 @@
+{
+  "env": "live",
+  "host": "localhost",
+  "appPath": "/",
+  "port": "8080",
+  "shortTimeout": 10000,
+  "longTimeout": 10000
+}
