@@ -114,7 +114,8 @@ export const getRestockReportByAsin = async () => {
     resultDict[row.ASIN] = {
       amzRec: row["Recommended replenishment qty"],
       last30: row["Units Sold Last 30 Days"],
-      FBAstk: row["Total Units"]
+      FBAstk: row["Total Units"],
+      FBAinbound: row["Inbound"]
     }
   })
 
@@ -145,16 +146,26 @@ export const updateRestockData = async () => {
         fields : {
           AmzRec: internalParseInt(restockInfo.amzRec),
           Last30: internalParseInt(restockInfo.last30),
-          "FBA Stock": internalParseInt(restockInfo.FBAstk)
+          "FBA Stock": internalParseInt(restockInfo.FBAstk),
+          "FBA Inbound": internalParseInt(restockInfo.FBAinbound)
         }
       }
-      updates.push(update);
+      updatesDict[asin] = update;
     }
 
   }
 
   records.map(mapper);//pushes to updates
   console.log(`Performing ${updates.length} from ${records.length} records`)
+  const rankingsDict = await getRankingsForAsinList(asins);//TODO: save updates
+  for(let asin of Object.keys(updatesDict)){
+    if(rankingsDict[asin] && updatesDict[asin].fields){
+      updatesDict[asin].fields.Rank = internalParseInt(rankingsDict[asin]);
+    }
+    updates.push(updatesDict[asin]);
+  }
+  console.log(updates);
+  await timeout(10000);
   await doBatchUpdates(tableName, updates);
-  await getRankingsForAsinList(asins);//TODO: save updates
+
 }

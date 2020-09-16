@@ -12,17 +12,17 @@ B002-5,Cordural Mixed 2 Pc Bath Set - Blues,' 8902552048122,0,0,0
 B002-6,Cordural Mix 2 Pc Bath Set Mint Green,' 8902552050583,215,0,215
 B002-7,Cordural Mixed 2 Pc Bath Set - Pinks,' 8902552051481,17,0,17
 B003-1,Cordural Mixed 2 Pc Bath Set Browns,' 8902552045947,899,0,899
-B003-2,Cordural MIX 2 Pc Bath Set Gray-Beige,' 8902552046890,2154,25,2129
+B003-2,Cordural MIX 2 Pc Bath Set Gray-Beige,' 8902552046890,2154,24,2130
 B003-3,Cordural Mixed 2 Pc Bath Set Gray Charcoal,' 8902552046906,272,0,272
 B003-4,Cordural Mixed 2 Pc Bath Set - Turquoise,' 8902552046913,782,0,782
 B003-5,Cordural Mixed 2 Pc Bath Set Blues,' 8902552048115,553,0,553
 B003-6,Cordural Mixed 2 Pc Bath Set Mint Green,' 8902552050590,740,0,740
 B003-7,Cordural Mixed 2 Pc Bath Set - Pinks,' 8902552051498,218,0,218
-B006-2,Pebbles Mat - Grey-Beige,' 8902552046791,334,0,334
+B006-2,Pebbles Mat - Grey-Beige,' 8902552046791,315,0,315
 B007-4,Classic - Burgundy,' 8902552046999,65,0,65
 B007-7,CLASSIC BATCH RUG 27X45,' 8902552048269,0,0,0
 B015-11,Classic 2 Pc Bath Rug Set - Mint Green,' 8902552049983,1,0,1
-B015-12,Classic 2 Pc Bath Rug Set - Lt. Grey,' 8902552051047,5,0,5
+B015-12,Classic 2 Pc Bath Rug Set - Lt. Grey,' 8902552051047,4,0,4
 B015-13,Classic 2 Pc Bath Rug Set - Turquoise,' 8902552051054,0,0,0
 B015-14,Classic 2 Pc Bath Rug Set - Mid Blue,' 8902552051061,0,0,0
 B015-15,Classic 2 Pc Bath Rug Set - Nutmeg Brown,' 8902552051078,0,0,0
@@ -33,10 +33,10 @@ B015-6,Classic 2 Pc Bath Rug Set - Platinum Grey,' 8902552048207,0,0,0
 B015-9,Classic 2 Pc Bath Rug Set - White,' 8902552048238,0,0,0
 B019-2,SPLENDOR REVERSIBLE STEP OUT 2PC RUG SET,' 8902552048436,0,0,0
 B025-1,Rainbow Multi Chindi Rag Rug-L - Multi,' 8902552048658,0,0,0
-B025-3,Rainbow Multi Chindi Rag Rug-R - Multi,' 8902552050071,779,0,779
+B025-3,Rainbow Multi Chindi Rag Rug-R - Multi,' 8902552050071,775,0,775
 B025-4,Rainbow Multi Chindi Rag Rug-M - Multi,' 8902552050088,48,0,48
 B025-5,Rainbow Multi Chindi Rag Rug-XL - Multi,' 8902552050606,0,0,0
-B027-1,Newport Rug - Blue,' 8902552049105,1,1,0
+B027-1,Newport Rug - Blue,' 8902552049105,0,0,0
 B027-2,Newport Rug - Grey White,' 8902552051238,1,1,0
 B028-1,Arabella Rug - Blue-White,' 8902552049112,20,0,20
 B029-1,Reversible 2 Pc Bath Set - White,' 8902552048801,256,0,256
@@ -45,13 +45,13 @@ B030-1,Cordural Stripe Runner Blues,' 8902552049891,0,0,0
 B030-2,Cordural Stripe Bath Rug - Turquoise,' 8902552049907,0,0,0
 B030-3,Cordural Stripe Bath Rug - Gray-Beige,' 8902552049914,0,0,0
 B030-4,Cordural Stripe Runner Mint Green,' 8902552050576,0,0,0
-B030-5,Cordural Stripe Bath Rug - Pinks,' 8902552051504,96,0,96
-B030-6,Cordural Stripe Runner - Browns,' 8902552051511,251,0,251
+B030-5,Cordural Stripe Bath Rug - Pinks,' 8902552051504,95,0,95
+B030-6,Cordural Stripe Runner - Browns,' 8902552051511,250,0,250
 B030-7,Cordural Stripe Runner  - Grey Charcoal,' 8902552051528,63,0,63
 B031-1,Classic 2 Pc Bath Set - Navy,' 8902552050408,0,0,0
 B031-2,Classic 2 Pc Bath Set - Burgundy,' 8902552050415,5,0,5
 B031-3,Classic 2 Pc Bath Set - White,' 8902552050422,0,0,0
-B031-4,Classic 2 Pc Bath Set  - Pink,' 8902552050439,5,0,5
+B031-4,Classic 2 Pc Bath Set  - Pink,' 8902552050439,3,0,3
 B031-5,Classic 2 Pc Bath Set  - Grey Flannel,' 8902552050446,0,0,0
 B031-6,Classic 2 Pc Bath Set  - Mint Green,' 8902552050453,0,0,0
 B034-1,New Cordural Solid 2 Pc Bath Set - Grey Flannel,' 8902552050224,0,0,0
@@ -59,7 +59,7 @@ B034-2,New Cordural Solid 2 Pc Bath Set - Mocha,' 8902552050231,0,0,0
 B034-3,New Cordural Solid 2 Pc Bath Set - Navy,' 8902552050248,0,0,0
 B034-5,New Cordural Solid 2 Pc Bath Set - Linen,' 8902552050262,0,0,0
 B034-6,New Cordural Solid 2 Pc Bath Set - White,' 8902552050279,0,0,0
-B035-1,New Cordural Solid Runner - Grey Flannel,' 8902552050286,420,0,420
+B035-1,New Cordural Solid Runner - Grey Flannel,' 8902552050286,419,0,419
 B035-3,New Cordural Solid Runner - Navy,' 8902552050309,0,0,0
 B035-4,New Cordural Solid Runner - Griffin Gray,' 8902552050316,0,0,0
 B035-5,New Cordural Solid Runner - Linen,' 8902552050323,0,0,0
@@ -73,58 +73,58 @@ B036-6,Crochet Mat Round - Turquoise,' 8902552051788,140,0,140
 B036-7,CROCHET MAT ROUND WHITE,' 890354050 6235,299,20,279
 B036-8,Crochet Mat Round,' 890354050 6242,293,0,293
 B036-9,Crochet Mat Round,' B036-9,292,0,292
-B037-1,Crochet Mat Oval - Coral,' 8902552051573,157,0,157
-B037-2,Crochet Mat Oval Pink,' 8902552051580,218,0,218
-B037-3,Crochet Mat Oval Griffin Gray,' 8902552051597,98,0,98
-B037-4,Crochet Mat Oval - Lavender,' 8902552051603,198,0,198
-B037-5,Crochet Mat Oval - Aqua,' 8902552051795,85,0,85
-B037-6,Crochet Mat Oval Turquoise,' 8902552051801,101,0,101
+B037-1,Crochet Mat Oval - Coral,' 8902552051573,161,0,161
+B037-2,Crochet Mat Oval Pink,' 8902552051580,215,0,215
+B037-3,Crochet Mat Oval Griffin Gray,' 8902552051597,99,0,99
+B037-4,Crochet Mat Oval - Lavender,' 8902552051603,188,0,188
+B037-5,Crochet Mat Oval - Aqua,' 8902552051795,84,0,84
+B037-6,Crochet Mat Oval Turquoise,' 8902552051801,89,0,89
 B037-7,Crochet Mat Oval,' 890354050 6273,297,0,297
 B037-8,Crochet Mat Oval,' 890354050 6280,282,0,282
 B037-9,Crochet Mat Oval,' 890354050 6297,271,0,271
 B038-1,Highland Stripe Bath Rug-S - White,' 8902552051610,51,0,51
-B038-2,Highland Stripe Bath Rug-S Griffin Gray,' 8902552051627,39,0,39
+B038-2,Highland Stripe Bath Rug-S Griffin Gray,' 8902552051627,38,0,38
 B038-3,Highland Stripe Bath Rug-S Provencial Blue,' 8902552051634,55,0,55
-B038-4,Highland Stripe Bath Rug-S Beige,' 8902552051641,41,0,41
-B039-1,Highland Stripe Bath Rug-M White,' 8902552051658,59,0,59
-B039-2,Highland Stripe Bath Rug-M Griffin Gray,' 8902552051665,2,0,2
+B038-4,Highland Stripe Bath Rug-S Beige,' 8902552051641,43,0,43
+B039-1,Highland Stripe Bath Rug-M White,' 8902552051658,58,0,58
+B039-2,Highland Stripe Bath Rug-M Griffin Gray,' 8902552051665,1,0,1
 B039-3,Highland Stripe Bath Rug-M Provencial Blue,' 8902552051672,19,0,19
-B039-4,Highland Stripe Bath Rug-M Beige,' 8902552051689,45,0,45
+B039-4,Highland Stripe Bath Rug-M Beige,' 8902552051689,42,0,42
 B040-1,Highland Stripe Bath Rug-L White,' 8902552051696,0,0,0
 B040-2,Highland Stripe Bath Rug-L Griffin Gray,' 8902552051702,0,0,0
 B040-3,Highland Stripe Bath Rug-L Provencial Blue,' 8902552051719,0,0,0
 B040-4,Highland Stripe Bath Rug-L Beige,' 8902552051726,0,0,0
 B041-1,Microfiber Loop Solid Bath Rug Set Black,' 8902552051818,0,0,0
 B041-2,Microfiber Loop Solid Bath Rug Set Gray,' 8902552051825,0,0,0
-B041-3,Microfiber Loop Solid Bath Rug Set Cream,' 8902552051832,54,0,54
-B041-4,Microfiber Loop Solid Bath Rug Set Beige,' 8902552051849,9,1,8
+B041-3,Microfiber Loop Solid Bath Rug Set Cream,' 8902552051832,53,0,53
+B041-4,Microfiber Loop Solid Bath Rug Set Beige,' 8902552051849,5,0,5
 B042-1,Microfiber Loop Checkers Bath Rug Black-White,' 8902552051856,0,0,0
 B042-2,Microfiber Loop Checkers Bath Rug Gray-White,' 8902552051863,77,0,77
 B042-3,Microfiber Loop Checkers Bath Rug Beige/Cream,' 8902552051870,66,0,66
-B044-1,Chenille Shagg Border Bath Rug Set Sage Green,' 8902552054000,160,0,160
+B044-1,Chenille Shagg Border Bath Rug Set Sage Green,' 8902552054000,158,0,158
 B044-2,Chenille Shagg Border Bath Rug Set Sky Blue,' 8902552054017,152,0,152
 B044-3,Chenille Shagg Border Bath Rug Set Pink,' 8902552054024,148,0,148
-B045-1,Chenille Shagg Round Bath Rug Turquoise,' 8902552054031,122,0,122
-B045-2,Chenille Shagg Round Bath Rug - Egg Plant,' 8902552054048,31,0,31
+B045-1,Chenille Shagg Round Bath Rug Turquoise,' 8902552054031,116,0,116
+B045-2,Chenille Shagg Round Bath Rug - Egg Plant,' 8902552054048,29,0,29
 B045-3,Chenille Shagg Round Bath Rug Hot Pink,' 8902552051955,107,0,107
-B046-1,Manhattan Stripe Bath Rug Set Turquoise-White,' 8902552051962,10,0,10
+B046-1,Manhattan Stripe Bath Rug Set Turquoise-White,' 8902552051962,8,0,8
 B046-2,Manhattan Stripe Bath Rug Set GREY-WHITE,' 8902552051979,35,0,35
-B046-3,Manhattan Stripe Bath Rug Set DK BLUE-WHITE ,' 8902552051986,77,0,77
+B046-3,Manhattan Stripe Bath Rug Set DK BLUE-WHITE ,' 8902552051986,76,0,76
 B047-1,Manhattan Stripe Bath Rug Turquoise-White,' 8902552051993,0,0,0
 B047-2,Manhattan Stripe Runner GREY-WHITE,' 8902552052006,0,0,0
 B047-3,Manhattan Stripe Runner DK BLUE-WHITE ,' 8902552052013,0,0,0
-B048-2,Micro Shag - Black,' 8902552052037,1,0,1
+B048-2,Micro Shag - Black,' 8902552052037,0,0,0
 B049-2,Micro Shag Black,' 8902552052051,45,0,45
 B050-2,Micro Shag Black,' 8902552052075,5,0,5
-B051-1,Bali Spa Rug Blue,' 8902552052174,14,0,14
+B051-1,Bali Spa Rug Blue,' 8902552052174,13,0,13
 B051-2,Bali Spa Rug Grey,' 8902552052181,20,0,20
 B051-3,Bali Spa Rug - Lt. Green,' 8902552052198,69,0,69
 B052-1,Thai Spa Rug Lt. Blue,' 8902552052204,88,0,88
 B052-2,Thai Spa Rug Ivory,' 8902552052211,136,0,136
 B052-3,Thai Spa Rug White,' 8902552052228,106,0,106
-B053-1,Rainbow Blue Shag White-Blue,' 8902552052235,0,0,0
-B054-1,Maui Bathroom Rug,' 677355168336,145,0,145
-B055-1,Maui Bathroom Runner Rug,' 677355186811,101,0,101
+B053-1,Rainbow Blue Shag White-Blue,' 8902552052235,1,0,1
+B054-1,Maui Bathroom Rug,' 677355168336,144,0,144
+B055-1,Maui Bathroom Runner Rug,' 677355186811,100,0,100
 CU001-1,MULTI CHINDI CUSHION COVER - Multi,' 8902552051474,27,0,27
 CU002-1,DENIM JUTE CUSHION COVER - Blues,' 8902552051245,0,0,0
 CU003-1,DIAMON CUSHION COVER Black-White,' 8902552051252,4,0,4
@@ -141,20 +141,20 @@ MBC006-2,jute small clutch,' 677355132146,20,0,20
 MBC007,Passport clutch,' 677355196902,100,0,100
 MBC008,Grey Lurex Clutc,' 677355156326,0,0,0
 PM001,Jute Placemats (Set of 4) in size - Natural,' 8902552050101,0,0,0
-PM002,Denim Jute Placemat (Set of 4) - Blue,' 8902552050170,173,24,149
-PM003,Rainbow Multi Chindi Placemat (Set of 4),' 8902552050200,579,0,579
+PM002,Denim Jute Placemat (Set of 4) - Blue,' 8902552050170,172,24,148
+PM003,Rainbow Multi Chindi Placemat (Set of 4),' 8902552050200,577,0,577
 PM004,JUTE ROUND PLACEMAT,' 8902552051269,0,0,0
 PM005,CHECK MATS White/Black,' 8902552051276,0,0,0
 PM006,Ombre Placemat Nat-Black,' 8902552051337,121,0,121
-PM006-1,Ombre Placemat - Nat-Turquoise,' 8902552051344,253,2,251
-PM007,Ombre Placemat - Natural-Ivory Dyed,' 8902552051757,27,0,27
+PM006-1,Ombre Placemat - Nat-Turquoise,' 8902552051344,247,0,247
+PM007,Ombre Placemat - Natural-Ivory Dyed,' 8902552051757,25,0,25
 PM013-1,Leather Placemats Set of 4 Brown,' 8902552052099,0,0,0
-PM013-2,Leather Placemats Set of 4 - Grey,' 8902552052105,12,2,10
+PM013-2,Leather Placemats Set of 4 - Grey,' 8902552052105,12,0,12
 PM014-1,Carmel Placemat Set of 4,' 677355185593,14,0,14
 PM015-1,Laguna Placemat Set of 4,' 677355172968,14,0,14
 PM016-1,Jute Oval Placemat Set of 4,' 677355191112,10,0,10
 PM017-1,Coastal Placemat Set of 4,' 677355173033,0,0,0
-R002-1,Diamond Rug - Black,' 8902552045992,11,0,11
+R002-1,Diamond Rug - Black,' 8902552045992,10,0,10
 R002-10,Diamond Rug Big Gray-white,' 8902552050057,1,0,1
 R002-11,Diamond Rug Big Black-White,' 8902552050064,0,0,0
 R002-15,Diamond Rug Runner Turquoise  ,' 8902552051092,0,0,0
@@ -173,9 +173,9 @@ R002-7,Diamond Rug  Turquoise  ,' 8902552050095,96,0,96
 R002-8,Diamond Rug Runner Gray-white,' 8902552050033,0,0,0
 R002-9,Diamond Rug Runner Black-White,' 8902552050040,0,0,0
 R003-1,Rainbow Multi Chindi Round Rag Rug Multi,' 8902552048863,27,0,27
-R003-2,Rainbow Multi Chindi Round Rag Rug Multi,' 8902552048870,26,0,26
+R003-2,Rainbow Multi Chindi Round Rag Rug Multi,' 8902552048870,25,0,25
 R003-3,Rainbow Multi Chindi Round Rag Rug Multi,' 8902552048887,26,0,26
-R004-1,Chindi Border Stripe 2 Pc Rug Set Multi Blue,' 8902552050156,126,0,126
+R004-1,Chindi Border Stripe 2 Pc Rug Set Multi Blue,' 8902552050156,125,0,125
 R005-1,Denim  Jute Rug Runner Blue,' 8902552050163,52,0,52
 R005-2,Denim  Jute Rug Blue,' 8902552050194,0,0,0
 R005-3,Denim  Jute Round Rug Blue,' 8902552050651,55,0,55
@@ -197,7 +197,7 @@ R018-1,Monterey Jute/Multi Chindi Rug-Multi,' 8902552050873,54,0,54
 R019-1,Monterey Jute/Multi Chindi Rug- Multi,' 8902552050903,68,0,68
 R019-2,Monterey Jute/Multi Chindi Rug-Ivory,' 8902552050910,0,0,0
 R019-3,Monterey Jute/Multi Chindi Rug-Black,' 8902552050927,0,0,0
-R020-1,Chevron Jute/Chenille Rug-Black,' 8902552050934,51,0,51
+R020-1,Chevron Jute/Chenille Rug-Black,' 8902552050934,50,0,50
 R020-2,Chevron Jute/Chenille Rug-Ivory,' 8902552050941,0,0,0
 R022-1,Rainbow Multi Ching Shag Rug-Multi,' 8902552050972,419,0,419
 R023-1,Jute Braid Oval Rug-Natural,' 8902552050989,0,0,0
@@ -207,7 +207,7 @@ R026-1,Rainbow Multi Chindi Oval Rug-Nat-Multi,' 8902552051016,0,0,0
 R027-1,Rainbow Multi Chindi Round Rug-Nat-Multi,' 8902552051023,28,0,28
 R028-1,Denim  Jute Oval Rug-Blue,' 8902552051030,32,0,32
 R029-1,Raffle Block Rug-Black-White,' 8902552051283,332,0,332
-R030-1,Raffle Block Rug-Black-White,' 8902552051306,24,0,24
+R030-1,Raffle Block Rug-Black-White,' 8902552051306,23,0,23
 R031-1,Leather Rug-Brown,' 8902552052136,30,0,30
 R031-2,Leather Rug-Grey,' 8902552052143,31,0,31
 R032-1,Leather Rug-Brown,' 8902552052150,30,0,30
@@ -249,11 +249,11 @@ R057-2,Cabana Stripe Rug,' 677355171053,21,0,21
 R058-1,Boston Rug,' 677355168084,180,0,180
 R058-2,Boston Rug,' 677355197428,180,0,180
 R059-1,Boston Rug,' 677355189874,37,0,37
-R059-2,Boston Rug,' 677355132948,28,0,28
+R059-2,Boston Rug,' 677355132948,27,0,27
 R060-1,Boston Rug,' 677355107953,89,0,89
-R061-1,Boston Rug,' 677355189232,14,0,14
+R061-1,Boston Rug,' 677355189232,13,0,13
 R062-1,Boston Rug,' 677355152052,19,0,19
-R063-1,Scottish Plaid Rug,' 677355145955,163,0,163
+R063-1,Scottish Plaid Rug,' 677355145955,162,0,162
 R064-1,Scottish Plaid Rug,' 677355142435,32,0,32
 R065-1,Scottish Plaid Rug,' 677355138384,23,0,23
 R066-1,Scottish Plaid Rug,' 677355154070,18,0,18
@@ -269,21 +269,21 @@ R075-1,Waffle Rug,' 8903540506181,179,0,179
 R075-2,Waffle Rug,' 8903540506198,179,0,179
 R075-3,Waffle Rug,' 8903540506204,179,0,179
 SAMPLE,SAMPLE-ASSORTED,' ASSORTED,0,0,0
-THR001-1,Diamond Cotton Throw-Rust-Ivory,' 8902552050613,52,0,52
+THR001-1,Diamond Cotton Throw-Rust-Ivory,' 8902552050613,50,0,50
 THR001-2,Diamond Cotton Throw-Aqua-White,' 8902552050620,0,0,0
 THR002-2,Chevron Cotton Throw-Aqua-White,' 8902552050644,34,0,34
 TR001,Jute Table Runner-Natural,' 8902552050118,0,0,0
-TR002,Denim Jute Table Runner-Blue,' 8902552050187,410,0,410
-TR003,Rainbow Multi Chindi Table Runner-Multi,' 8902552050217,7,1,6
+TR002,Denim Jute Table Runner-Blue,' 8902552050187,408,0,408
+TR003,Rainbow Multi Chindi Table Runner-Multi,' 8902552050217,1,1,0
 TR004,CHECK RUNNERS-Black-White,' 8902552051320,0,0,0
-TR005,Ombre Table Runner-Nat-Black,' 8902552051351,84,0,84
-TR005-1,Ombre Table Runner-Nat-Turquoise,' 8902552051368,3,0,3
+TR005,Ombre Table Runner-Nat-Black,' 8902552051351,82,0,82
+TR005-1,Ombre Table Runner-Nat-Turquoise,' 8902552051368,0,0,0
 TR006,Ombre Table Runner-Natural-Ivory Dyed,' 8902552051764,7,0,7
 TR012-1,Leather Table Runner-Brown,' 8902552052112,0,0,0
 TR012-2,Leather Table Runner-Grey,' 8902552052129,0,0,0
 TR013-1,Miami Table Runner,' 677355129375,36,0,36
 TR014-1,Cleopatra Table Runner,' 677355152557,66,0,66
-TR015-1,Lily Table Runner,' 677355164352,42,0,42
+TR015-1,Lily Table Runner,' 677355164352,40,0,40
 TR016-1,Carmel Table Runner,' 677355192690,17,0,17
 TR017-1,Laguna Table Runner,' 677355149700,30,0,30
 TR018-1,Coastal Table Runner,' 677355132122,61,0,61

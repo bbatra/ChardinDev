@@ -87,7 +87,6 @@ export const getRankingsForAsinList = async (asins) => {
   let output = 'asin,category 1, rank 1, category 2, rank 2, category 3, rank 3 ';
   for(let sku of fullList){
     const { asin, rankings} = sku;
-    console.log(sku);
     output += `\n${asin}`;
 
     if(rankings){
@@ -96,7 +95,7 @@ export const getRankingsForAsinList = async (asins) => {
       }
     }
   }
-  console.log(output);
+  console.log(dict);
   return dict;
 }
 
