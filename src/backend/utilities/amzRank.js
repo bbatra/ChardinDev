@@ -16,7 +16,6 @@ amazonMws.setApiKey(accessKey, accessSecret);
 const csv = fs.readFileSync(path.join(__dirname, './SKU2ASIN.csv'), 'utf8');
 
 const csvRows = csv.split('\n').slice(1);
-console.log(csvRows);
 
 var ASINList = csvRows.map(row => {
   return row.split(',')[1]

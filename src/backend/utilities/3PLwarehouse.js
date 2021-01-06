@@ -1,34 +1,50 @@
 let Client = require('ssh2-sftp-client');
-let sftp = new Client();
+let sftpClient = new Client();
 const fs = require('fs');
 const path = require('path')
 const csvjson = require('csvjson');
 import {timeout} from "./timeout";
 import {doBatchUpdates, getAllRecords, internalParseInt} from "./airtableBatch";
 const moment = require('moment');
+import superagent from 'superagent';
+import { Coda } from 'coda-js';
+const AdmZip = require('adm-zip');
+
+const connectFtp = async () => {
+  try {
+
+    if(sftpClient && !sftpClient.endCalled && sftpClient.client && sftpClient.client.config && !sftpClient.client.config.host){
+      await sftpClient.connect({
+        host: 'ftp.3plworldwide.com',
+        port: '22',
+        username: 'CHAROME',
+        password: 'CHM3PL!'
+      })
+    }
+  }
+  catch(e){
+
+  }
+}
+
 
 const getLatestInventoryFileData = async () => {
   try {
-    await sftp.connect({
-      host: 'ftp.3plworldwide.com',
-      port: '22',
-      username: 'CHAROME',
-      password: 'CHM3PL!'
-    })
+
+    await connectFtp();
 
     const localPath = path.join(__dirname, './latest-inventory.csv');
     let dst = fs.createWriteStream(path.join(__dirname, './latest-inventory.csv'));
     const remoteDirectory = '/INVENTORY';
 
-    const files = await sftp.list('/INVENTORY');
+    const files = await sftpClient.list('/INVENTORY');
     let mostRecentFile;
     if (files && files.length > 0) {
       mostRecentFile = files.sort((a, b) => b.modifyTime - a.modifyTime)[0]
     }
-    console.log(mostRecentFile);
-    console.log('Modofy time : ', new Date(mostRecentFile.modifyTime));
+
     const remoteFile = `${remoteDirectory}/${mostRecentFile.name}`
-    await sftp.get(remoteFile, dst);
+    await sftpClient.get(remoteFile, dst);
     await timeout(3000);//leave some time to be sure
     return (fs.readFileSync(localPath, 'utf-8'));
 
@@ -55,7 +71,6 @@ export const updateInventory = async() => {
   records.map(record => {
     const skuData = skuDict[record.get('SKU')];
     if(skuData){
-      console.log('Got sku data : ', skuData);
       updates.push({
         id: record.id,
         fields : {
@@ -78,7 +93,6 @@ export const updateInventory = async() => {
     }
   })
   await doBatchUpdates(tableName, updates);
-  console.log('Updates done!');
 }
 
 const parseSkuList = (fileContents, format = 'tsv') => {
@@ -93,9 +107,6 @@ const parseSkuList = (fileContents, format = 'tsv') => {
   const packingListStartIndex = fileContents.indexOf('Merchant SKU');
   const shippingInfoLines = fileContents.substr(0, packingListStartIndex).split('\r').join('').split('\n');
   const packingListCSV = fileContents.substr(packingListStartIndex);
-  console.log({
-    shippingInfoLines
-  });
 
   const shippingInfo = {};
   for(let line of shippingInfoLines){
@@ -106,9 +117,7 @@ const parseSkuList = (fileContents, format = 'tsv') => {
     }
   }
 
-  console.log({
-    shippingInfo
-  });
+
 
   let addressParts = shippingInfo['Ship To'].split('"').join('').split(',');
   let shipToName, shipToAddress1, shipToCity, shipToState, shipToZip;
@@ -185,7 +194,6 @@ const ORDER_3PL = {
 
 const mapShipmentToOrderFile = (shipment) => {
   let csv = '';
-  console.log(shipment);
   for(let sku of shipment.packingList){
     const obj = {sku, shippingInfo: shipment.shippingInfo}
     const parts = []
@@ -206,29 +214,104 @@ const mapShipmentToOrderFile = (shipment) => {
   return csv;
 }
 
-export const inputShipmentOrder = () => {
-  fs.readdir(path.join(__dirname, '../shipments'), function(err, items) {
-    console.log(items);
+const readFiles = () => {
+  var AdmZip = require('adm-zip');
 
-    let orderFileBody = Object.keys(ORDER_3PL).join(',') + '\n';
+  // reading archives
+  var zip = new AdmZip(path.join(__dirname, '../shipments/fbaPLN1228.zip'));
+  var zipEntries = zip.getEntries(); // an array of ZipEntry records
 
-    for (var i=0; i<items.length; i++) {
-
-      // console.log(items[i]);
-      if(items[i].indexOf('CHM.ORDER') === -1 && (items[i].indexOf('.tsv') > -1 || items[i].indexOf('.txt') > -1 || items[i].indexOf('.csv') > -1)){
-        const fileContents = fs.readFileSync(path.join(__dirname, `../shipments/${items[i]}`), 'utf-8')
-        const fileFormat = items[i].indexOf('.tsv') > -1 || items[i].indexOf('.txt') > -1 ? 'tsv': 'csv';
-        const shipment = parseSkuList(fileContents, fileFormat);
-        const csvLinesInOrder = mapShipmentToOrderFile(shipment);
-        orderFileBody += `${csvLinesInOrder}`
-      }
+  zipEntries.forEach(function (zipEntry) {
+    console.log(zipEntry.toString()); // outputs zip entries information
+    if (zipEntry.entryName.indexOf('.tsv') > -1) {
+      console.log(zipEntry.getData().toString('utf8'));
     }
-    console.log(orderFileBody);
-    fs.writeFileSync(path.join(__dirname, `../shipments/CHM.ORDER.${moment(new Date).format('MMDDYY')}.csv`), orderFileBody, 'utf-8');
   });
+}
+
+export const getZipFileFromCodaAndProcess = async () => {
+  console.log('Get zip file from coda' )
+  try{
+    const coda = new Coda('32668a30-0299-4d5e-8ab3-e6738eb5d9d7'); // insert your token
+    const table = (await coda.getTable('b_K6LvREhM', 'grid-2fIRj6u67-'));
+    const rows = await table.listRows({
+      useColumnNames: true, // param to display column names rather than key
+      valueFormat: "rich"
+    });
+    const firstRow = rows[0];
+    const source = firstRow.values['Zip file'][0].url;
+    const zipFile = 'master.zip';
+    superagent
+      .get(source)
+      .on('error', function(error) {
+        console.log(error);
+      })
+      .pipe(fs.createWriteStream(zipFile))
+      .on('finish', async function(data) {
+
+        try{
+
+          await connectFtp();
+
+          const zip = new AdmZip(zipFile);
+          let orderFileBody = Object.keys(ORDER_3PL).join(',') + '\n';
+          let zipEntries = zip.getEntries(); // an array of ZipEntry records
+          zipEntries.forEach(async function (zipEntry) {
+            console.log(zipEntry.entryName);
+            if (zipEntry.entryName.indexOf('.tsv') > -1) {
+              const fileContents = zipEntry.getData().toString('utf8');
+              const fileFormat = 'tsv';
+              const shipment = parseSkuList(fileContents, fileFormat);
+              const csvLinesInOrder = mapShipmentToOrderFile(shipment);
+              orderFileBody += `${csvLinesInOrder}`
+            }
+            //handle shipping label
+            else if(zipEntry.entryName.indexOf('.pdf') > -1){
+              await sftpClient.put(zipEntry.getData(), `/TEMP/${zipEntry.entryName}`);
+            }
+            const orderFileBuffer = Buffer.from(orderFileBody);
+            // console.log(orderFileBody);
+            await sftpClient.put(orderFileBuffer, `/TEMP/CHM.ORDER.${moment(new Date).format('MMDDYY')}.csv`);
+            fs.writeFileSync(path.join(__dirname, `../shipments/CHM.ORDER.${moment(new Date).format('MMDDYY')}.csv`), orderFileBody, 'utf-8');
+          });
+        }
+        catch(e){
+          console.error('[ERROR] getZipFileFromCoda : ', e.message);
+        }
+      });
+  }
+  catch(e){
+    console.error('[ERROR] getZipFileFromCoda : ', {e});
+
+    //TODO: send error to coda
+  }
+}
+
+export const inputShipmentOrder = () => {
+  // fs.readdir(path.join(__dirname, '../shipments'), function(err, items) {
+  //   console.log(items);
+  //
+  //   let orderFileBody = Object.keys(ORDER_3PL).join(',') + '\n';
+  //
+  //   for (var i=0; i<items.length; i++) {
+  //
+  //     // console.log(items[i]);
+  //     if(items[i].indexOf('CHM.ORDER') === -1 && (items[i].indexOf('.tsv') > -1 || items[i].indexOf('.txt') > -1 || items[i].indexOf('.csv') > -1)){
+  //       const fileContents = fs.readFileSync(path.join(__dirname, `../shipments/${items[i]}`), 'utf-8')
+  //       const fileFormat = items[i].indexOf('.tsv') > -1 || items[i].indexOf('.txt') > -1 ? 'tsv': 'csv';
+  //       const shipment = parseSkuList(fileContents, fileFormat);
+  //       const csvLinesInOrder = mapShipmentToOrderFile(shipment);
+  //       orderFileBody += `${csvLinesInOrder}`
+  //     }
+  //   }
+  //   console.log(orderFileBody);
+  //   fs.writeFileSync(path.join(__dirname, `../shipments/CHM.ORDER.${moment(new Date).format('MMDDYY')}.csv`), orderFileBody, 'utf-8');
+  // });
 
 
 }
+
+//TODO: consider using https://www.npmjs.com/package/node-stream-zip and reading just zipped files, with the UI in AirTable
 
 
 
