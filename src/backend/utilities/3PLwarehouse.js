@@ -254,14 +254,15 @@ const readFiles = () => {
 
 export const getZipFileFromCodaAndProcess = async () => {
   console.log('Get zip file from coda' )
+  const coda = new Coda(CODA_TOKEN_ID); // insert your token
+  const table = (await coda.getTable(DOC_ID, 'grid-2fIRj6u67-'));
+  const rows = await table.listRows({
+    useColumnNames: true, // param to display column names rather than key
+    valueFormat: "rich"
+  });
+  const firstRow = rows[0];
+
   try{
-    const coda = new Coda(CODA_TOKEN_ID); // insert your token
-    const table = (await coda.getTable(DOC_ID, 'grid-2fIRj6u67-'));
-    const rows = await table.listRows({
-      useColumnNames: true, // param to display column names rather than key
-      valueFormat: "rich"
-    });
-    const firstRow = rows[0];
     console.log(firstRow);
     const source = firstRow.values['Zip file'][0].url;
     console.log({source})
