@@ -6,25 +6,6 @@ import { timeout } from "../utilities/timeout";
 // import { getReviewsReportByAsin } from "../utilities/amzReviews";
 // import { getInventory } from "../utilities/CartRoverInventory";
 
-const updateData = async () => {
-  await updateInventory();
-  await timeout(30000);
-  await updateRestockData();
-}
-
-// const schedule = require('node-schedule');
-//
-// schedule.scheduleJob({minute: 25}, function(){
-//   updateData();
-// });
-inputShipmentOrder();
-// updateData();
-// (async () => {
-//   // inputShipmentOrder();
-//   await updateInventory()
-//   await timeout(30000);
-//   await updateRestockData();
-// })()
 
 module.exports = app;
 

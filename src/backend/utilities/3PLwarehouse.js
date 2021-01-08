@@ -1,5 +1,4 @@
 let Client = require('ssh2-sftp-client');
-let sftpClient = new Client();
 const fs = require('fs');
 const path = require('path')
 const csvjson = require('csvjson');
@@ -10,9 +9,14 @@ import superagent from 'superagent';
 import { Coda } from 'coda-js';
 const AdmZip = require('adm-zip');
 
+const DOC_ID = 'b_K6LvREhM';
+const CODA_TOKEN_ID = '32668a30-0299-4d5e-8ab3-e6738eb5d9d7';
+let sftpClient;
+
+const FTP_SHIPMENT_FOLDER_NAME = 'TEMP';//INBOUND
 const connectFtp = async () => {
   try {
-
+    sftpClient = new Client();
     if(sftpClient && !sftpClient.endCalled && sftpClient.client && sftpClient.client.config && !sftpClient.client.config.host){
       await sftpClient.connect({
         host: 'ftp.3plworldwide.com',
@@ -30,7 +34,6 @@ const connectFtp = async () => {
 
 const getLatestInventoryFileData = async () => {
   try {
-
     await connectFtp();
 
     const localPath = path.join(__dirname, './latest-inventory.csv');
@@ -93,6 +96,26 @@ export const updateInventory = async() => {
     }
   })
   await doBatchUpdates(tableName, updates);
+}
+
+export const notifyCodaInventoryUpdated = async () => {
+  const tableId = 'grid-s-4aFpnWFD';
+  const coda = new Coda(CODA_TOKEN_ID); // insert your token
+  try{
+    const table = (await coda.getTable(DOC_ID, tableId));
+    const rows = await table.listRows({
+      useColumnNames: true, // param to display column names rather than key
+      valueFormat: "rich"
+    });
+    const firstRow = rows[0];
+    await table.updateRow(firstRow.id, {
+      "DB inventory updated on": new Date()
+    })
+  }
+  catch(e){
+    console.error('[ERROR] 3PLwarehouse > notifyCodaInventoryUpdated ', e);
+  }
+
 }
 
 const parseSkuList = (fileContents, format = 'tsv') => {
@@ -232,14 +255,16 @@ const readFiles = () => {
 export const getZipFileFromCodaAndProcess = async () => {
   console.log('Get zip file from coda' )
   try{
-    const coda = new Coda('32668a30-0299-4d5e-8ab3-e6738eb5d9d7'); // insert your token
-    const table = (await coda.getTable('b_K6LvREhM', 'grid-2fIRj6u67-'));
+    const coda = new Coda(CODA_TOKEN_ID); // insert your token
+    const table = (await coda.getTable(DOC_ID, 'grid-2fIRj6u67-'));
     const rows = await table.listRows({
       useColumnNames: true, // param to display column names rather than key
       valueFormat: "rich"
     });
     const firstRow = rows[0];
+    console.log(firstRow);
     const source = firstRow.values['Zip file'][0].url;
+    console.log({source})
     const zipFile = 'master.zip';
     superagent
       .get(source)
@@ -267,25 +292,44 @@ export const getZipFileFromCodaAndProcess = async () => {
             }
             //handle shipping label
             else if(zipEntry.entryName.indexOf('.pdf') > -1){
-              await sftpClient.put(zipEntry.getData(), `/TEMP/${zipEntry.entryName}`);
+              await sftpClient.put(zipEntry.getData(), `/${FTP_SHIPMENT_FOLDER_NAME}/${zipEntry.entryName}`);
             }
             const orderFileBuffer = Buffer.from(orderFileBody);
             // console.log(orderFileBody);
-            await sftpClient.put(orderFileBuffer, `/TEMP/CHM.ORDER.${moment(new Date).format('MMDDYY')}.csv`);
-            fs.writeFileSync(path.join(__dirname, `../shipments/CHM.ORDER.${moment(new Date).format('MMDDYY')}.csv`), orderFileBody, 'utf-8');
+            try{
+              const outputFileName = `CHM.ORDER.${moment(new Date).format('MMDDYY')}.csv`
+              await sftpClient.put(orderFileBuffer, `/${FTP_SHIPMENT_FOLDER_NAME}/${outputFileName}`);
+              fs.writeFileSync(path.join(__dirname, `../shipments/${outputFileName}`), orderFileBody, 'utf-8');
+              await table.updateRow(firstRow.id, {
+                Result: orderFileBody, Status: 'Done', "Output filename": outputFileName
+              })
+            }
+            catch(e){
+              table.updateRow(firstRow.id, {
+                Result: e.message, Status: 'Error'
+              })
+            }
+
           });
         }
         catch(e){
           console.error('[ERROR] getZipFileFromCoda : ', e.message);
+          table.updateRow(firstRow.id, {
+            Result: e.message, Status: 'Error'
+          })
         }
       });
   }
   catch(e){
-    console.error('[ERROR] getZipFileFromCoda : ', {e});
-
+    console.error('[ERROR] getZipFileFromCoda : ', e.message);
+    table.updateRow(firstRow.id, {
+      Result: e.message, Status: 'Error'
+    })
     //TODO: send error to coda
   }
 }
+
+
 
 export const inputShipmentOrder = () => {
   // fs.readdir(path.join(__dirname, '../shipments'), function(err, items) {

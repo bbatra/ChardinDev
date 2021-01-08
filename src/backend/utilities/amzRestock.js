@@ -119,14 +119,12 @@ export const getRestockReportByAsin = async () => {
     }
   })
 
-  console.log(resultDict);
   return resultDict;
 
 }
 
 export const updateRestockData = async () => {
   const tableName = 'Products';
-  console.log('AMZ Restock main');
   const records = await getAllRecords(tableName, ['SKU', 'AmzRec', 'ASIN']);
   const restockDict = await getRestockReportByAsin();
   const updatesDict = [];
@@ -134,7 +132,6 @@ export const updateRestockData = async () => {
   const asins = [];
   const mapper = (record) => {
     const asin = record.get('ASIN')
-    console.log();
     if(asin) {
       asins.push(asin);
     }
@@ -164,8 +161,6 @@ export const updateRestockData = async () => {
     }
     updates.push(updatesDict[asin]);
   }
-  console.log(updates);
   await timeout(10000);
   await doBatchUpdates(tableName, updates);
-
 }

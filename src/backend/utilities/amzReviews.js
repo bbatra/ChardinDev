@@ -131,7 +131,6 @@ export const updateReviewsData = async () => {
   const restockDict = await getReviewsReportByAsin();
   const updates = []
   const mapper = (record) => {
-    console.log(record.get('ASIN'));
     const restockInfo = restockDict[record.get('ASIN')];
     if(restockInfo){
       const update = {
