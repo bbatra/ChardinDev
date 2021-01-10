@@ -1,21 +1,47 @@
 const fs = require('fs');
 const path = require('path')
+const stream = require('stream');
+import moment from 'moment';
 import {getZipFileFromCodaAndProcess} from "../utilities/3PLwarehouse";
 import lowCodeMiddlewareHTML from '../views/lowCodeMiddlewareHTML';
+import {getAllRecords} from "../utilities/airtableBatch";
+import csvjson from 'csvjson'
 
-const downloadShippingPlan = (req, res) => {
-    // const file = fs.readFileSync(path.join(__dirname, '../shipments/ShippingPlan010620.tsv'), 'binary');
-    // res.setHeader('Content-Length', file.length);
-    res.download(path.join(__dirname, '../shipments/ShippingPlan010620.tsv'), 'ShippingPlan010620.tsv');
-    // res.end();
+const downloadShippingPlan = async (req, res) => {
+    const tableName = 'Products'
+    const recordsRaw = await getAllRecords(tableName, ['SKU', 'CasesToSend', 'QtyInShipment', 'CasePk'], 'viwA2zkCnqk8qoinG');
+    const recordsJson = recordsRaw.map(r => r.fields);
+    const recordsTsv = csvjson.toCSV(recordsJson, { delimiter: '\t',headers: 'none'})
+
+    const fileName = `PLN${moment(new Date).format('MMDDYY')}`;
+    const fileHeader = `PlanName	${fileName}		
+ShipToCountry	US		
+AddressName	Phyllis Duncan		
+AddressFieldOne	3PL Worldwide		
+AddressFieldTwo	11190 White Birch Drive		
+AddressCity	Rancho Cucamonga		
+AddressCountryCode	US		
+AddressStateOrRegion	CA		
+AddressPostalCode	91730		
+AddressDistrict
+			
+MerchantSKU	UnitsPerCase	NumberOfCases	Quantity`
+    const fileBody = recordsTsv;
+    const fileContents = Buffer.from(fileHeader + fileBody, "utf-8");
+
+
+    const readStream = new stream.PassThrough();
+    readStream.end(fileContents);
+
+    res.set('Content-disposition', `attachment; filename=${fileName}.tsv`);
+    res.set('Content-Type', 'text/plain');
+
+    readStream.pipe(res);
 }
 
 const downloadRestockOutput = (req, res) => {
   const fileName = req.query.file;
-  // const file = fs.readFileSync(path.join(__dirname, '../shipments/ShippingPlan010620.tsv'), 'binary');
-  // res.setHeader('Content-Length', file.length);
   res.download(path.join(__dirname, `../shipments/${fileName}`), fileName);
-  // res.end();
 }
 
 const processRestockZip = async (req, res) => {

@@ -7,8 +7,8 @@ import {timeout} from "../utilities/timeout";
 //helper
 const doAsyncUpdates = async () => {
   await updateInventory();
-  // await timeout(30000);
-  // await updateRestockData();
+  await timeout(30000);
+  await updateRestockData();
 }
 
 const updateInventoryInDB = async (req, res) => {

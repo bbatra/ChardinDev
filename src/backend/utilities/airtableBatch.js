@@ -2,12 +2,12 @@ var Airtable = require('airtable');
 var base = new Airtable({apiKey: 'keyLHDlXFGBP21E4R'}).base('appRmNsz6U4L9kKgD');
 import { getRestockReportByAsin } from "./amzRestock";
 
-export const getAllRecords = async (tableName = 'Products copy', fieldNames = []) => {
+export const getAllRecords = async (tableName = 'Products copy', fieldNames = [], view) => {
 
   try{
     const records = await base(tableName).select({
-      // Selecting the first 3 records in Grid view:
       fields: ["SKU", ...fieldNames],
+      view
     }).all();
 
     return records;
@@ -59,32 +59,4 @@ export const internalParseInt = (str) => {
     return 0;
   }
 
-}
-
-const main = async () => {
-  const tableName = 'Products'
-  console.log('Airtable batch main');
-  const records = await getAllRecords(tableName, ['SKU', 'AmzRec', 'ASIN']);
-  const restockDict = await getRestockReportByAsin();
-  const updates = []
-  const mapper = (record) => {
-    console.log(record.get('ASIN'));
-    const restockInfo = restockDict[record.get('ASIN')];
-    if(restockInfo){
-      const update = {
-        id: record.id,
-          fields : {
-          AmzRec: internalParseInt(restockInfo.amzRec),
-          Last30: internalParseInt(restockInfo.last30),
-          "FBA Stock": internalParseInt(restockInfo.FBAstk)
-        }
-      }
-      updates.push(update);
-    }
-
-  }
-
-  records.map(mapper);
-  console.log(`Performing ${updates.length} from ${records.length} records`)
-  await doBatchUpdates(tableName, updates);
 }
