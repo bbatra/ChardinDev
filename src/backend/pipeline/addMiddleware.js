@@ -11,6 +11,6 @@ const path = require('path');
 app.use(compression());
 app.use(cookieParser());
 
-app.use(express.static('../'));
+app.use('/static', express.static(path.resolve(__dirname, '../../static/')));
 
 module.exports = app;
