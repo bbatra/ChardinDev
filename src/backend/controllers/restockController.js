@@ -8,8 +8,10 @@ import {getAllRecords} from "../utilities/airtableBatch";
 import csvjson from 'csvjson'
 
 const downloadShippingPlan = async (req, res) => {
+    console.log('Download shipping plan');
     const tableName = 'Products'
     const recordsRaw = await getAllRecords(tableName, ['SKU', 'CasesToSend', 'QtyInShipment', 'CasePk'], 'viwA2zkCnqk8qoinG');
+    console.log('Got records from airtable')
     const recordsJson = recordsRaw.map(r => r.fields);
     const recordsTsv = csvjson.toCSV(recordsJson, { delimiter: '\t',headers: 'none'})
 
@@ -31,12 +33,19 @@ MerchantSKU	UnitsPerCase	NumberOfCases	Quantity`
 
 
     const readStream = new stream.PassThrough();
+    console.log('Read stream created');
     readStream.end(fileContents);
+
+    console.log('read stream end')
 
     res.set('Content-disposition', `attachment; filename=${fileName}.tsv`);
     res.set('Content-Type', 'text/plain');
 
+    console.log('Res set')
+
     readStream.pipe(res);
+
+    console.log('Res piped');
 }
 
 const downloadRestockOutput = (req, res) => {
