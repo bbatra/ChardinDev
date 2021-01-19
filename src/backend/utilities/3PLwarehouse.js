@@ -252,7 +252,7 @@ const readFiles = () => {
   });
 }
 
-export const getZipFileFromCodaAndProcess = async () => {
+export const getZipFileFromCodaAndProcess = async (attempt = 0) => {
   console.log('Get zip file from coda' )
   const coda = new Coda(CODA_TOKEN_ID); // insert your token
   const table = (await coda.getTable(DOC_ID, 'grid-2fIRj6u67-'));
@@ -265,6 +265,11 @@ export const getZipFileFromCodaAndProcess = async () => {
   try{
     console.log(firstRow);
     const source = firstRow.values['Zip file'][0].url;
+    if(!source && attempt < 10){
+      console.log('Wait some more time');
+      await timeout(5000);//leave some time to be sure
+      return await getZipFileFromCodaAndProcess(attempt + 1);
+    }
     console.log({source})
     const zipFile = 'master.zip';
     superagent

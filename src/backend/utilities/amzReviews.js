@@ -5,14 +5,8 @@ const fs = require('fs');
 const path = require('path');
 import { timeout } from "./timeout";
 
-const
-  SELLER_ID = 'AXIATCKCVD08Z',
-  MWS_AUTH_TOKEN = 'amzn.mws.84b9bc3f-0d58-8927-02a1-3fae9ec20821',
-  MARKET_PLACE_ID_US = 'ATVPDKIKX0DER',
-  MARKET_PLACE_ID_CA = 'A2EUQ1WTGCTBG2',
-  MARKET_PLACE_ID_MX = 'A1AM78C64UM0Y8',
-  accessKey = 'AKIAII3OZS75ANHTSU7Q',
-  accessSecret = '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';
+const config = require('config');
+const { SELLER_ID, MWS_AUTH_TOKEN, MARKET_PLACE_ID_US, accessKey, accessSecret } = config.mws;
 
 const amazonMws = new MwsApi();
 amazonMws.setApiKey(accessKey, accessSecret);

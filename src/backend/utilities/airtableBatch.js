@@ -2,18 +2,23 @@ var Airtable = require('airtable');
 var base = new Airtable({apiKey: 'keyLHDlXFGBP21E4R'}).base('appRmNsz6U4L9kKgD');
 import { getRestockReportByAsin } from "./amzRestock";
 
-export const getAllRecords = async (tableName = 'Products copy', fieldNames = [], view) => {
+export const getAllRecords = async (tableName = 'Products copy', fieldNames = [], view = undefined) => {
 
   try{
-    const records = await base(tableName).select({
+    const query = {
       fields: ["SKU", ...fieldNames],
-      view
-    }).all();
+    }
+
+    if(view){
+      query.view = view;
+    }
+
+    const records = await base(tableName).select(query).all();
 
     return records;
   }
   catch(e){
-    console.error(e);
+    console.error('[ERROR] airtableBatch > getAllRecords' , e);
   }
 
   return [];
