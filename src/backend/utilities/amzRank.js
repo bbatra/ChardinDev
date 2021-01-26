@@ -64,7 +64,7 @@ export const getRankingsForAsinList = async (asins = ASINList) => {
       fullList.push(...results);
     }
     catch(e){
-      console.log('error products', e);
+      console.log('[ERROR] amzRank > getRankingsForAsinList: ', e);
       console.log(myData);
     }
 

@@ -20,8 +20,11 @@ var data = {
   'MarketplaceId': MARKET_PLACE_ID_US,
 };
 
-const getReport = async (reportId) => {
+const getReport = async (reportId, attempt = 0) => {
 
+    if(attempt > 20){
+      return []
+    }
     try{
       const response = await amazonMws.reports.search({
         ...data,
@@ -32,9 +35,9 @@ const getReport = async (reportId) => {
       return response;
     }
     catch(e){
-      console.log('error products', e);
+      console.log('[ERROR] amzReviews > getReport: ', e);
       await timeout(TIMEOUT);
-      return getReport(reportId);
+      return getReport(reportId, attempt + 1);
     }
 
 }
@@ -52,7 +55,7 @@ const requestReport = async () => {
 
   }
   catch(e){
-    console.log('error products', e);
+    console.log('[ERROR] amzReviews > requestReport: ', e);
   }
 
 
@@ -60,7 +63,10 @@ const requestReport = async () => {
 }
 
 const TIMEOUT = 30000;
-const getGeneratedReportId = async (ReportRequestId) => {
+const getGeneratedReportId = async (ReportRequestId, attempt = 0) => {
+  if(attempt > 20){
+    return [];
+  }
   try{
     console.log('getGeneratedReport called: ', (Date.now() - start));
     const response = await amazonMws.reports.search({
@@ -81,9 +87,9 @@ const getGeneratedReportId = async (ReportRequestId) => {
 
   }
   catch(e){
-    console.log('error products', e);
+    console.log('[ERROR] amzReviews > getGeneratedReportId: ', e);
     await timeout(TIMEOUT);
-    return getGeneratedReportId(ReportRequestId);
+    return getGeneratedReportId(ReportRequestId, attempt + 1);
   }
 
 }
