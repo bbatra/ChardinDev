@@ -13,7 +13,7 @@ const DOC_ID = 'b_K6LvREhM';
 const CODA_TOKEN_ID = '32668a30-0299-4d5e-8ab3-e6738eb5d9d7';
 let sftpClient;
 
-const FTP_SHIPMENT_FOLDER_NAME = 'TEMP';//INBOUND
+const FTP_SHIPMENT_FOLDER_NAME = 'INBOUND';//INBOUND
 const connectFtp = async () => {
   try {
     sftpClient = new Client();
